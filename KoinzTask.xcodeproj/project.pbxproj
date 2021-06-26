@@ -22,6 +22,8 @@
 		322D36AF2685375F003CBC68 /* KoinzTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322D36AE2685375F003CBC68 /* KoinzTaskUITests.swift */; };
 		32CDEDED268762B50030DD67 /* NoteListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */; };
 		32CDEDF5268765480030DD67 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEDF4268765480030DD67 /* State.swift */; };
+		32CDEE1E268779560030DD67 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEE1D268779560030DD67 /* Note.swift */; };
+		32CDEE242687797C0030DD67 /* DatabseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEE232687797C0030DD67 /* DatabseManager.swift */; };
 		447B409B61369B6A1603856F /* Pods_KoinzTask_KoinzTaskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E407FD29B26463EF11A3C6 /* Pods_KoinzTask_KoinzTaskUITests.framework */; };
 		6761ECBEC0FA9F4701DA79CD /* Pods_KoinzTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B1A8C90D38C7A700759E0FA /* Pods_KoinzTask.framework */; };
 		68ED5602502F504C230D825D /* Pods_KoinzTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23E9BBF3A74523949679525 /* Pods_KoinzTaskTests.framework */; };
@@ -66,6 +68,8 @@
 		322D36B02685375F003CBC68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCellViewModel.swift; sourceTree = "<group>"; };
 		32CDEDF4268765480030DD67 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		32CDEE1D268779560030DD67 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		32CDEE232687797C0030DD67 /* DatabseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabseManager.swift; sourceTree = "<group>"; };
 		3DB4D5E31206ECE9A19B529B /* Pods-KoinzTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoinzTask.debug.xcconfig"; path = "Target Support Files/Pods-KoinzTask/Pods-KoinzTask.debug.xcconfig"; sourceTree = "<group>"; };
 		3E8F81AEEDC967A07E9B2163 /* Pods-KoinzTaskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoinzTaskTests.release.xcconfig"; path = "Target Support Files/Pods-KoinzTaskTests/Pods-KoinzTaskTests.release.xcconfig"; sourceTree = "<group>"; };
 		3FA1E187AB6A25D1596E32D2 /* Pods-KoinzTaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoinzTaskTests.debug.xcconfig"; path = "Target Support Files/Pods-KoinzTaskTests/Pods-KoinzTaskTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 		322D368B2685375E003CBC68 /* KoinzTask */ = {
 			isa = PBXGroup;
 			children = (
+				32CDEE222687797C0030DD67 /* Common */,
+				32CDEE1C268779560030DD67 /* Model */,
 				32CDEDE02687565C0030DD67 /* Presentaion */,
 				322D368C2685375E003CBC68 /* AppDelegate.swift */,
 				322D368E2685375E003CBC68 /* SceneDelegate.swift */,
@@ -211,9 +217,33 @@
 		32CDEDE02687565C0030DD67 /* Presentaion */ = {
 			isa = PBXGroup;
 			children = (
+				32CDEE2826877CF20030DD67 /* NoteDetails */,
 				320EC3DC2686511A00AB9F7B /* Notes */,
 			);
 			path = Presentaion;
+			sourceTree = "<group>";
+		};
+		32CDEE1C268779560030DD67 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32CDEE1D268779560030DD67 /* Note.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32CDEE222687797C0030DD67 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				32CDEE232687797C0030DD67 /* DatabseManager.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		32CDEE2826877CF20030DD67 /* NoteDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NoteDetails;
 			sourceTree = "<group>";
 		};
 		41AE038F1DDA4E0E0BE24E62 /* Pods */ = {
@@ -471,9 +501,11 @@
 			files = (
 				322D36912685375E003CBC68 /* ViewController.swift in Sources */,
 				32003DDC2686898F003FDC5C /* NotesViewController.swift in Sources */,
+				32CDEE242687797C0030DD67 /* DatabseManager.swift in Sources */,
 				32CDEDF5268765480030DD67 /* State.swift in Sources */,
 				32003DE226868B8E003FDC5C /* NoteListViewModel.swift in Sources */,
 				32CDEDED268762B50030DD67 /* NoteListCellViewModel.swift in Sources */,
+				32CDEE1E268779560030DD67 /* Note.swift in Sources */,
 				322D368D2685375E003CBC68 /* AppDelegate.swift in Sources */,
 				322D368F2685375E003CBC68 /* SceneDelegate.swift in Sources */,
 				320EC3E6268651DD00AB9F7B /* NoteTableViewCell.swift in Sources */,

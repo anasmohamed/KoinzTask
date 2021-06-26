@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct NoteListCellViewModel {
     let noteTitle: String
     let noteBody: String
