@@ -17,7 +17,7 @@ class NoteDetailsViewModel {
     private var imagePath = ""
     
     var errorMessage: Observable<String?> = Observable(nil)
- 
+    
     
     func setNoteData(title:String,details:String,location:String,imagePath:String,latitude:Double,longitude:Double)  {
         note.title = title
@@ -26,13 +26,19 @@ class NoteDetailsViewModel {
         note.imagePath = imagePath
         note.latitude = latitude
         note.longitude = longitude
+        note.creationDate = getCreationDate()
     }
-    
+    func getCreationDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        return          formatter.string(from: Date())
+        
+    }
     func addNote() {
         DatabaseManager.shared.add(note: note)
     }
     func getData()->[Note]  {
-       return DatabaseManager.shared.fetchNotes()
+        return DatabaseManager.shared.fetchNotes()
     }
     func credentialsInput() -> CredentialsInputStatus {
         //        if email.isEmpty && password.isEmpty {
@@ -48,7 +54,7 @@ class NoteDetailsViewModel {
             errorMessage.value = "email field is empty."
             return .Incorrect
         }
-       
+        
         
         return .Correct
     }

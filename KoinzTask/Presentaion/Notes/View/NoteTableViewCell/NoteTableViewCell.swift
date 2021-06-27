@@ -19,10 +19,10 @@ class NoteTableViewCell: UITableViewCell {
                 noteBodyLbl.text = noteListCellViewModel?.noteBody
                 nearestLbl.text = noteListCellViewModel?.nearestNote
                 if ((noteListCellViewModel?.hasGPS) != nil){
-                    noteWithLocationImageView.image = UIImage(named: "note")
+                    noteWithLocationImageView.image = UIImage(named: "pin")
                 }
                 if ((noteListCellViewModel?.hasImage) != nil){
-                    noteWIthImageView.image = UIImage(named: "note")
+                    noteWIthImageView.image = UIImage(named: "image")
 
                 }
                 

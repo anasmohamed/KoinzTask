@@ -16,7 +16,8 @@ class Note :Object{
     @objc dynamic var longitude : Double = 0.0
 
     @objc dynamic var imagePath : String = ""
-    
+    @objc dynamic var creationDate : String = ""
+
     override static func primaryKey() -> String? {
         return "id"
     }

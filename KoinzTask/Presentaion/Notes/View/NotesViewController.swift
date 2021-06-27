@@ -16,13 +16,14 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     @IBOutlet weak var notesTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     lazy var viewModel: NoteListViewModel = {
-            return NoteListViewModel()
-        }()
+        return NoteListViewModel()
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         notesTableView.delegate = self
         notesTableView.dataSource = self
         setupTableView()
+        initView()
         bindData()
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -31,6 +32,11 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             locationManager.startUpdatingLocation()
         }
         // Do any additional setup after loading the view.
+    }
+    func initView() {
+        self.navigationItem.title = "Notes"
+        
+        notesTableView.rowHeight = UITableView.automaticDimension
     }
     func bindData()  {
         viewModel.getNotesSuccess.bind{_ in
@@ -54,20 +60,25 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         cell.noteListCellViewModel = cellVM
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let noteDetailsStoryboard = UIStoryboard(name: "NoteDetailsView", bundle: nil)
+        let noteDetailsViewController = noteDetailsStoryboard.instantiateViewController(identifier: "NoteDetailsTableViewController") as! NoteDetailsTableViewController
+        self.navigationController?.pushViewController(noteDetailsViewController, animated: true)
     }
-    */
-
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 extension NotesViewController : CLLocationManagerDelegate {
-   
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
@@ -75,6 +86,6 @@ extension NotesViewController : CLLocationManagerDelegate {
         latitude = locValue.latitude
         viewModel.updateLocation(latitude: latitude, longitude: longitude)
         viewModel.fetchNotes()
-
+        
     }
 }

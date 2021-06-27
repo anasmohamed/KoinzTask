@@ -75,11 +75,13 @@ class NoteListViewModel {
     private func processFetchedNotes( notes: [Note] ) {
          self.notes = notes // Cache
          var vms = [NoteListCellViewModel]()
-         for note in notes {
-            if note.id == distancesInMeter[distancesInMeter.keys.max() ?? 0]{
+        let sortedNotes = notes.sorted { $0.creationDate > $1.creationDate }
+         for note in sortedNotes {
+            if note.id == distancesInMeter[distancesInMeter.keys.min() ?? 0]{
                 vms.insert(createCellViewModel(note:note), at: 0)
-            }
-             vms.append( createCellViewModel(note:note) )
+            }else{
+            
+                vms.append( createCellViewModel(note:note) )}
          }
         
          self.cellViewModels = vms

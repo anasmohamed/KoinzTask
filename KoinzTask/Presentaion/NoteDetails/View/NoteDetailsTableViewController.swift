@@ -27,7 +27,6 @@ class NoteDetailsTableViewController: UITableViewController  {
     var longitude : Double = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(viewModel.getData()[1].latitude)") 
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         addPhotoLbl.isUserInteractionEnabled = true
         addPhotoLbl.addGestureRecognizer(tap)
