@@ -8,9 +8,15 @@
 import Foundation
 import RealmSwift
 class Note :Object{
-    @objc dynamic var id : String?
-    @objc dynamic var title: String?
-    @objc dynamic var details: String?
-    @objc dynamic var location : String?
-    @objc dynamic var imagePath : String?    
+    @objc dynamic var id : Int = 0
+    @objc dynamic var title: String = ""
+    @objc dynamic var details: String = ""
+    @objc dynamic var location : String = ""
+    @objc dynamic var imagePath : String = ""
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+
+  
 }
