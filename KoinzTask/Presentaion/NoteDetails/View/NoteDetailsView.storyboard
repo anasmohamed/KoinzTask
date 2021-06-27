@@ -11,7 +11,7 @@
         <scene sceneID="Y3a-Xm-oMf">
             <objects>
                 <tableViewController storyboardIdentifier="NoteDetailsTableViewController" id="l4Z-40-QRg" customClass="NoteDetailsTableViewController" customModule="KoinzTask" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WEK-Wp-XxZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WEK-Wp-XxZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -25,8 +25,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Note Title Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jF1-XO-2bq">
-                                                    <rect key="frame" x="12" y="12" width="390" height="34"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Note Title Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jF1-XO-2bq">
+                                                    <rect key="frame" x="12" y="12" width="390" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="qYT-bs-3X8"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -68,7 +71,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FPD-ji-dm2">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="FPD-ji-dm2">
                                                     <rect key="frame" x="12" y="33" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="35" id="NzO-eu-hbu"/>
@@ -104,7 +107,7 @@
                                                         <constraint firstAttribute="height" constant="128" id="bE8-OB-WX2"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="khv-97-BnW">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="khv-97-BnW">
                                                     <rect key="frame" x="12" y="1" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="adr-cv-Ze4"/>
@@ -140,21 +143,27 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTJ-oB-0LH">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.5" height="30"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <state key="normal" title="Edit">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="editNoteBtnDidTapped:" destination="l4Z-40-QRg" eventType="touchUpInside" id="wWp-Hs-nYq"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdF-Sd-VDC">
                                                             <rect key="frame" x="123.5" y="0.0" width="103" height="30"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <state key="normal" title="Add">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="AddNoteBtnDidTapped:" destination="l4Z-40-QRg" eventType="touchUpInside" id="hAq-tU-Cei"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRC-Jd-QYw">
                                                             <rect key="frame" x="247.5" y="0.0" width="102.5" height="30"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <state key="normal" title="Delete">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="deleteNoteBtnDidTapped:" destination="l4Z-40-QRg" eventType="touchUpInside" id="2LN-Ho-lia"/>
                                                             </connections>
@@ -213,6 +222,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="image" width="64" height="64"/>
+        <image name="pin" width="64" height="64"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

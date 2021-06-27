@@ -30,7 +30,13 @@
                             <constraint firstItem="bOw-E0-Xf6" firstAttribute="trailing" secondItem="ch3-f2-BCn" secondAttribute="trailing" constant="8" id="uJa-3e-AJF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gsa-FS-GPx"/>
+                    <navigationItem key="navigationItem" id="gsa-FS-GPx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bNa-9k-Kjs">
+                            <connections>
+                                <segue destination="UU8-H7-hNc" kind="presentation" id="lVF-iV-FgS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="notesTableView" destination="ch3-f2-BCn" id="ZQU-Ck-9rn"/>
                     </connections>
@@ -56,6 +62,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEh-4l-RmZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="28.985507246376812" y="88.392857142857139"/>
+        </scene>
+        <!--NoteDetailsView-->
+        <scene sceneID="nCa-fZ-3Kv">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NoteDetailsView" id="UU8-H7-hNc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vj6-lT-anY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1766" y="88"/>
         </scene>
     </scenes>
     <resources>

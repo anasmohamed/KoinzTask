@@ -63,19 +63,11 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let noteDetailsStoryboard = UIStoryboard(name: "NoteDetailsView", bundle: nil)
         let noteDetailsViewController = noteDetailsStoryboard.instantiateViewController(identifier: "NoteDetailsTableViewController") as! NoteDetailsTableViewController
+        noteDetailsViewController.note = viewModel.getData(index: indexPath.row)
         self.navigationController?.pushViewController(noteDetailsViewController, animated: true)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+   
 }
 extension NotesViewController : CLLocationManagerDelegate {
     
