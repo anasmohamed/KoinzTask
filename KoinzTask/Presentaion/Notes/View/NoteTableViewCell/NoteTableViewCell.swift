@@ -13,7 +13,21 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet weak var noteWithLocationImageView: UIImageView!
     @IBOutlet weak var noteWIthImageView: UIImageView!
     @IBOutlet weak var nearestLbl: UILabel!
-    
+    var noteListCellViewModel : NoteListCellViewModel? {
+            didSet {
+                noteTItleLbl.text = noteListCellViewModel?.noteTitle
+                noteBodyLbl.text = noteListCellViewModel?.noteBody
+                nearestLbl.text = noteListCellViewModel?.nearestNote
+                if ((noteListCellViewModel?.hasGPS) != nil){
+                    noteWithLocationImageView.image = UIImage(named: "note")
+                }
+                if ((noteListCellViewModel?.hasImage) != nil){
+                    noteWIthImageView.image = UIImage(named: "note")
+
+                }
+                
+            }
+        }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

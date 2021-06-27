@@ -23,9 +23,11 @@ class NoteDetailsTableViewController: UITableViewController  {
     let locationManager = CLLocationManager()
     var viewModel: NoteDetailsViewModel = NoteDetailsViewModel()
     var imagePath : String = ""
+    var latitude : Double = 0.0
+    var longitude : Double = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
-       print("\(viewModel.getData().count)") 
+        print("\(viewModel.getData()[1].latitude)") 
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         addPhotoLbl.isUserInteractionEnabled = true
         addPhotoLbl.addGestureRecognizer(tap)
@@ -79,7 +81,7 @@ class NoteDetailsTableViewController: UITableViewController  {
     @IBAction func editNoteBtnDidTapped(_ sender: Any) {
     }
     @IBAction func AddNoteBtnDidTapped(_ sender: Any) {
-        viewModel.setNoteData(title: noteTitleTextField.text!, details: noteBodyTextView.text, location: locationLbl.text ?? "", imagePath: imagePath)
+        viewModel.setNoteData(title: noteTitleTextField.text!, details: noteBodyTextView.text, location: locationLbl.text ?? "", imagePath: imagePath,latitude:latitude,longitude: longitude )
                
                //Here we check user's credentials input - if it's correct we call login()
                switch viewModel.credentialsInput() {
@@ -120,6 +122,8 @@ extension NoteDetailsTableViewController : CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location: CLLocation = manager.location else { return }
+        latitude = location.coordinate.latitude
+        longitude = location.coordinate.longitude
         fetchCityAndCountry(from: location) { city, country, error in
             guard let city = city, let country = country, error == nil else { return }
             self.locationLbl.text = city + ", " + country

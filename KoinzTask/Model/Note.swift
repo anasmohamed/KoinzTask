@@ -12,6 +12,9 @@ class Note :Object{
     @objc dynamic var title: String = ""
     @objc dynamic var details: String = ""
     @objc dynamic var location : String = ""
+    @objc dynamic var latitude: Double = 0.0
+    @objc dynamic var longitude : Double = 0.0
+
     @objc dynamic var imagePath : String = ""
     
     override static func primaryKey() -> String? {

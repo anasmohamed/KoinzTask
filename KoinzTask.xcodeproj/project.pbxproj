@@ -22,7 +22,6 @@
 		322D36AF2685375F003CBC68 /* KoinzTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322D36AE2685375F003CBC68 /* KoinzTaskUITests.swift */; };
 		32828B582687DC5800BEF042 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32828B572687DC5800BEF042 /* Observable.swift */; };
 		32CDEDED268762B50030DD67 /* NoteListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */; };
-		32CDEDF5268765480030DD67 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEDF4268765480030DD67 /* State.swift */; };
 		32CDEE1E268779560030DD67 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEE1D268779560030DD67 /* Note.swift */; };
 		32CDEE242687797C0030DD67 /* DatabseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEE232687797C0030DD67 /* DatabseManager.swift */; };
 		32CDEE2B26877DA70030DD67 /* NoteDetailsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CDEE2A26877DA70030DD67 /* NoteDetailsView.storyboard */; };
@@ -72,7 +71,6 @@
 		322D36B02685375F003CBC68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32828B572687DC5800BEF042 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCellViewModel.swift; sourceTree = "<group>"; };
-		32CDEDF4268765480030DD67 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		32CDEE1D268779560030DD67 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		32CDEE232687797C0030DD67 /* DatabseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabseManager.swift; sourceTree = "<group>"; };
 		32CDEE2A26877DA70030DD67 /* NoteDetailsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteDetailsView.storyboard; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 			children = (
 				32003DE126868B8E003FDC5C /* NoteListViewModel.swift */,
 				32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */,
-				32CDEDF4268765480030DD67 /* State.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -533,7 +530,6 @@
 				322D36912685375E003CBC68 /* ViewController.swift in Sources */,
 				32003DDC2686898F003FDC5C /* NotesViewController.swift in Sources */,
 				32CDEE242687797C0030DD67 /* DatabseManager.swift in Sources */,
-				32CDEDF5268765480030DD67 /* State.swift in Sources */,
 				32003DE226868B8E003FDC5C /* NoteListViewModel.swift in Sources */,
 				32CDEDED268762B50030DD67 /* NoteListCellViewModel.swift in Sources */,
 				32CDEE1E268779560030DD67 /* Note.swift in Sources */,

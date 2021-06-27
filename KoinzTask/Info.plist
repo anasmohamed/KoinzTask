@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need to save location to know where you write your note</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>please allow to access photo library to pick image to your note</string>
 	<key>UIApplicationSceneManifest</key>
@@ -36,19 +38,17 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>NoteDetailsView</string>
+					<string>NotesView</string>
 				</dict>
 			</array>
 		</dict>
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need to save location to know where you write your note</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>NoteDetailsView</string>
+	<string>NotesView</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

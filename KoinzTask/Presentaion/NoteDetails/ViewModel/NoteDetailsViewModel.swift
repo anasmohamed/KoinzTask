@@ -17,13 +17,15 @@ class NoteDetailsViewModel {
     private var imagePath = ""
     
     var errorMessage: Observable<String?> = Observable(nil)
-
+ 
     
-    func setNoteData(title:String,details:String,location:String,imagePath:String)  {
+    func setNoteData(title:String,details:String,location:String,imagePath:String,latitude:Double,longitude:Double)  {
         note.title = title
         note.details = details
         note.location = location
         note.imagePath = imagePath
+        note.latitude = latitude
+        note.longitude = longitude
     }
     
     func addNote() {
