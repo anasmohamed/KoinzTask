@@ -40,11 +40,14 @@ class NoteDetailsViewModel {
     func getData()->[Note]  {
         return DatabaseManager.shared.fetchNotes()
     }
+    func delete(note:Note)  {
+        DatabaseManager.shared.delete(note: note)
+    }
+    func update(noteId : Int)  {
+        note.id = noteId
+        DatabaseManager.shared.update(note: note)
+    }
     func credentialsInput() -> CredentialsInputStatus {
-        //        if email.isEmpty && password.isEmpty {
-        //            credentialsInputErrorMessage.value = "Please provide username and password."
-        //            return .Incorrect
-        //        }
         if note.title.isEmpty {
             errorMessage.value = "Password should be 6 digits or more"
             return .Incorrect

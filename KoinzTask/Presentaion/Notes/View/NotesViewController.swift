@@ -24,7 +24,6 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         notesTableView.dataSource = self
         setupTableView()
         initView()
-        bindData()
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -32,6 +31,11 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             locationManager.startUpdatingLocation()
         }
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bindData()
+
     }
     func initView() {
         self.navigationItem.title = "Notes"

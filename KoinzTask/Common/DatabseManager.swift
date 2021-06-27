@@ -26,9 +26,23 @@ class DatabaseManager {
     }
     
     
+    
+    func update(note:Note)  {
+        let insideNote = realm.object(ofType: Note.self, forPrimaryKey: note.id)
+        try! realm.write{
+            insideNote?.details = note.details
+            insideNote?.title = note.title
+            insideNote?.creationDate = note.creationDate
+            insideNote?.imagePath = note.imagePath
+            insideNote?.location = note.location
+            insideNote?.latitude = note.latitude
+            insideNote?.longitude = note.longitude
+            
+        }
+    }
     func add(note: Note) {
         debugPrint("Path to realm file: " + realm.configuration.fileURL!.absoluteString)
-
+        
         try! realm.write{
             note.id = incrementID()
             realm.add(note)
@@ -40,7 +54,7 @@ class DatabaseManager {
         }
     }
     private func incrementID() -> Int {
-      return (realm.objects(Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        return (realm.objects(Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
     }
     func isAddedNote(_ note: Note) -> Bool {
         let notes = realm.objects(Note.self).filter("id = %@" ,note.id)

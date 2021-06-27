@@ -92,9 +92,7 @@ class NoteListViewModel {
     func getCellViewModel( at indexPath: IndexPath ) -> NoteListCellViewModel {
         return cellViewModels[indexPath.row]
     }
-    func delete(note:Note)  {
-        DatabaseManager.shared.delete(note: note)
-    }
+    
     func getNotes()-> [Note] {
         DatabaseManager.shared.fetchNotes()
     }

@@ -55,6 +55,9 @@ class NoteDetailsTableViewController: UITableViewController  {
             deleteNoteBtn.isHidden = true
             return
         }
+        noteTitleTextField.isEnabled = false
+        noteBodyTextView.isEditable = false
+        print("nass\(note.id)")
         noteTitleTextField.text = note.title
         noteBodyTextView.text = note.details
         locationLbl.textColor = UIColor.black
@@ -68,7 +71,7 @@ class NoteDetailsTableViewController: UITableViewController  {
         addPhotoLbl.isHidden = true
         noteImageView.image = image
         
-       
+        
     }
     func setupButtons()  {
         setupButtonBorder(button: AddNoteBtn)
@@ -98,16 +101,16 @@ class NoteDetailsTableViewController: UITableViewController  {
         return 1
     }
     public func loadImageFromDocumentDirectory(fileName: String) -> UIImage? {
-            
-            let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!;
-            let fileURL = documentsUrl.appendingPathComponent(fileName)
+        
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!;
+        let fileURL = documentsUrl.appendingPathComponent(fileName)
         print(fileURL)
-            do {
-                let imageData = try Data(contentsOf: fileURL)
-                return UIImage(data: imageData)
-            } catch {}
-            return nil
-        }
+        do {
+            let imageData = try Data(contentsOf: fileURL)
+            return UIImage(data: imageData)
+        } catch {}
+        return nil
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -129,7 +132,19 @@ class NoteDetailsTableViewController: UITableViewController  {
         present(vc, animated: true)
     }
     @IBAction func editNoteBtnDidTapped(_ sender: Any) {
-        
+        if editNoteBtn.titleLabel?.text == "Edit"{
+            noteBodyTextView.isEditable = true
+            noteTitleTextField.isEnabled = true
+            noteTitleTextField.becomeFirstResponder()
+            noteImageView.isHidden = true
+            addPhotoLbl.isHidden = false
+            editNoteBtn.setTitle("Save", for: .normal)
+        }else{
+            viewModel.setNoteData(title: noteTitleTextField.text!, details: noteBodyTextView.text, location: locationLbl.text ?? "", imagePath: imagePath,latitude:latitude,longitude: longitude)
+            viewModel.update(noteId: note!.id)
+            editNoteBtn.setTitle("Edit", for: .normal)
+
+        }
         
     }
     func getSavedImage(named: String) -> UIImage? {
@@ -151,7 +166,20 @@ class NoteDetailsTableViewController: UITableViewController  {
         }
     }
     @IBAction func deleteNoteBtnDidTapped(_ sender: Any) {
+        presentDeleteAlert()
+        
     }
-    
+    private func presentDeleteAlert() {
+        let deleteActionHandler: (UIAlertAction) -> Void = { _ in
+            self.viewModel.delete(note: self.note!)
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        let deleteAlerController = AlertService.deleteAlert(
+            deleteActionHandler: deleteActionHandler)
+        
+        present(deleteAlerController, animated: true)
+    }
 }
 

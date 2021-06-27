@@ -23,6 +23,7 @@
 		324C7CC52688D837001F0AEB /* NoteDetailsView + ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C7CC42688D837001F0AEB /* NoteDetailsView + ImagePicker.swift */; };
 		324C7CCA2688D880001F0AEB /* NoteDetailsView + LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C7CC92688D880001F0AEB /* NoteDetailsView + LocationManager.swift */; };
 		324C7CCF2688D9F4001F0AEB /* NoteDetailsView + UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C7CCE2688D9F4001F0AEB /* NoteDetailsView + UITextViewDelegate.swift */; };
+		324C7CD42688E25C001F0AEB /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C7CD32688E25C001F0AEB /* AlertService.swift */; };
 		32828B582687DC5800BEF042 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32828B572687DC5800BEF042 /* Observable.swift */; };
 		32CDEDED268762B50030DD67 /* NoteListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */; };
 		32CDEE1E268779560030DD67 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEE1D268779560030DD67 /* Note.swift */; };
@@ -75,6 +76,7 @@
 		324C7CC42688D837001F0AEB /* NoteDetailsView + ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailsView + ImagePicker.swift"; sourceTree = "<group>"; };
 		324C7CC92688D880001F0AEB /* NoteDetailsView + LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailsView + LocationManager.swift"; sourceTree = "<group>"; };
 		324C7CCE2688D9F4001F0AEB /* NoteDetailsView + UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailsView + UITextViewDelegate.swift"; sourceTree = "<group>"; };
+		324C7CD32688E25C001F0AEB /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		32828B572687DC5800BEF042 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCellViewModel.swift; sourceTree = "<group>"; };
 		32CDEE1D268779560030DD67 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				32CDEE232687797C0030DD67 /* DatabseManager.swift */,
 				32828B572687DC5800BEF042 /* Observable.swift */,
+				324C7CD32688E25C001F0AEB /* AlertService.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				32003DDC2686898F003FDC5C /* NotesViewController.swift in Sources */,
 				324C7CCA2688D880001F0AEB /* NoteDetailsView + LocationManager.swift in Sources */,
 				324C7CC52688D837001F0AEB /* NoteDetailsView + ImagePicker.swift in Sources */,
+				324C7CD42688E25C001F0AEB /* AlertService.swift in Sources */,
 				32CDEE242687797C0030DD67 /* DatabseManager.swift in Sources */,
 				32003DE226868B8E003FDC5C /* NoteListViewModel.swift in Sources */,
 				32CDEDED268762B50030DD67 /* NoteListCellViewModel.swift in Sources */,
