@@ -40,19 +40,36 @@ class NoteDetailsTableViewController: UITableViewController  {
         locationLbl.addGestureRecognizer(addLocationTap)
         
         setupButtons()
-        setupDataInViews()
+        setupUI()
     }
-    func setupDataInViews()  {
-        noteTitleTextField.text = note?.title
-        noteBodyTextView.text = note?.details
+    
+    func setupUI(){
+        guard let note = note else {
+            noteBodyTextView.delegate = self
+            noteBodyTextView.text = "Note Body Here"
+            noteBodyTextView.textColor = UIColor.lightGray
+            addPhotoLbl.isHidden = false
+            noteImageView.isHidden = true
+            locationLbl.isHidden = false
+            editNoteBtn.isHidden = true
+            deleteNoteBtn.isHidden = true
+            return
+        }
+        noteTitleTextField.text = note.title
+        noteBodyTextView.text = note.details
         locationLbl.textColor = UIColor.black
-        locationLbl.text = note?.location
-        print(loadImageFromDocumentDirectory(fileName: "anas.jpg"))
+        locationLbl.text = note.location
         noteImageView.isHidden = false
         AddNoteBtn.isHidden = true
-        noteImageView.image = loadImageFromDocumentDirectory(fileName: "anas.jpg")
+        guard let image = loadImageFromDocumentDirectory(fileName: "anas.jpg") else {
+            addPhotoLbl.isHidden = false
+            return
+        }
+        addPhotoLbl.isHidden = true
+        noteImageView.image = image
+        
+       
     }
-
     func setupButtons()  {
         setupButtonBorder(button: AddNoteBtn)
         setupButtonBorder(button: editNoteBtn)
@@ -112,6 +129,8 @@ class NoteDetailsTableViewController: UITableViewController  {
         present(vc, animated: true)
     }
     @IBAction func editNoteBtnDidTapped(_ sender: Any) {
+        
+        
     }
     func getSavedImage(named: String) -> UIImage? {
         if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
@@ -135,39 +154,4 @@ class NoteDetailsTableViewController: UITableViewController  {
     }
     
 }
-extension NoteDetailsTableViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("\(info)")
-        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage{
-            noteImageView.isHidden = false
-            addPhotoLbl.isHidden = true
-            noteImageView.image = image
-            saveImage(image,imageName: "anas.jpg")
-        }
-        picker.dismiss(animated: true, completion: nil)
-        
-    }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-}
-extension NoteDetailsTableViewController : CLLocationManagerDelegate {
-    
-    func fetchCityAndCountry(from location: CLLocation, completion: @escaping (_ city: String?, _ country:  String?, _ error: Error?) -> ()) {
-        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
-            completion(placemarks?.first?.locality,
-                       placemarks?.first?.country,
-                       error)
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location: CLLocation = manager.location else { return }
-        latitude = location.coordinate.latitude
-        longitude = location.coordinate.longitude
-        fetchCityAndCountry(from: location) { city, country, error in
-            guard let city = city, let country = country, error == nil else { return }
-            self.locationLbl.text = city + ", " + country
-            print(city + ", " + country)
-        }
-    }
-}
+

@@ -33,7 +33,7 @@
                     <navigationItem key="navigationItem" id="gsa-FS-GPx">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bNa-9k-Kjs">
                             <connections>
-                                <segue destination="UU8-H7-hNc" kind="presentation" id="lVF-iV-FgS"/>
+                                <segue destination="UU8-H7-hNc" kind="show" id="lVF-iV-FgS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -63,10 +63,12 @@
             </objects>
             <point key="canvasLocation" x="28.985507246376812" y="88.392857142857139"/>
         </scene>
-        <!--NoteDetailsView-->
+        <!--NoteDetailsTableViewController-->
         <scene sceneID="nCa-fZ-3Kv">
             <objects>
-                <viewControllerPlaceholder storyboardName="NoteDetailsView" id="UU8-H7-hNc" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="NoteDetailsView" referencedIdentifier="NoteDetailsTableViewController" id="UU8-H7-hNc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="qbp-aP-lY5"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vj6-lT-anY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1766" y="88"/>

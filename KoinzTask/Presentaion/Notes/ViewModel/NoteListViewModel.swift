@@ -9,13 +9,13 @@ import Foundation
 import CoreLocation
 class NoteListViewModel {
     private var notes: [Note] = [Note]()
-   
+    
     private var cellViewModels : [NoteListCellViewModel] = [NoteListCellViewModel](){
         didSet{
             getNotesSuccess.value = notes
         }
     }
-
+    
     
     var numberOfItems: Int {
         return notes.count
@@ -37,7 +37,7 @@ class NoteListViewModel {
             emptyNotes.value = false
         }else{
             self.processFetchedNotes(notes: notes)
-
+            
             for note in notes {
                 let coordinate₀ = CLLocation(latitude: latitude, longitude: longitude)
                 let coordinate₁ = CLLocation(latitude: note.latitude, longitude: longitude)
@@ -47,14 +47,14 @@ class NoteListViewModel {
         }
         
     }
-
+    
     func createCellViewModel( note: Note ) -> NoteListCellViewModel {
         
         //Wrap a description
         var hasGPS = false
         var hasImage = false
         var nearest = ""
-       
+        
         if note.id == distancesInMeter[distancesInMeter.keys.min() ?? 0]{
             nearest = "Nearest"
         }
@@ -73,25 +73,28 @@ class NoteListViewModel {
         return NoteListCellViewModel(noteTitle: note.title, noteBody: note.details, nearestNote: nearest, hasImage: hasImage, hasGPS: hasGPS)
     }
     private func processFetchedNotes( notes: [Note] ) {
-         self.notes = notes // Cache
-         var vms = [NoteListCellViewModel]()
+        self.notes = notes // Cache
+        var vms = [NoteListCellViewModel]()
         let sortedNotes = notes.sorted { $0.creationDate > $1.creationDate }
-         for note in sortedNotes {
+        for note in sortedNotes {
             if note.id == distancesInMeter[distancesInMeter.keys.min() ?? 0]{
                 vms.insert(createCellViewModel(note:note), at: 0)
             }else{
-            
+                
                 vms.append( createCellViewModel(note:note) )}
-         }
+        }
         
-         self.cellViewModels = vms
-     }
+        self.cellViewModels = vms
+    }
     func getData(index: Int) -> Note {
         return notes[index]
     }
     func getCellViewModel( at indexPath: IndexPath ) -> NoteListCellViewModel {
-           return cellViewModels[indexPath.row]
-       }
+        return cellViewModels[indexPath.row]
+    }
+    func delete(note:Note)  {
+        DatabaseManager.shared.delete(note: note)
+    }
     func getNotes()-> [Note] {
         DatabaseManager.shared.fetchNotes()
     }

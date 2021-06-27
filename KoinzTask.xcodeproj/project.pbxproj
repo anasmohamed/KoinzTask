@@ -20,6 +20,9 @@
 		322D36992685375F003CBC68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 322D36972685375F003CBC68 /* LaunchScreen.storyboard */; };
 		322D36A42685375F003CBC68 /* KoinzTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322D36A32685375F003CBC68 /* KoinzTaskTests.swift */; };
 		322D36AF2685375F003CBC68 /* KoinzTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322D36AE2685375F003CBC68 /* KoinzTaskUITests.swift */; };
+		324C7CC52688D837001F0AEB /* NoteDetailsView + ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C7CC42688D837001F0AEB /* NoteDetailsView + ImagePicker.swift */; };
+		324C7CCA2688D880001F0AEB /* NoteDetailsView + LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C7CC92688D880001F0AEB /* NoteDetailsView + LocationManager.swift */; };
+		324C7CCF2688D9F4001F0AEB /* NoteDetailsView + UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C7CCE2688D9F4001F0AEB /* NoteDetailsView + UITextViewDelegate.swift */; };
 		32828B582687DC5800BEF042 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32828B572687DC5800BEF042 /* Observable.swift */; };
 		32CDEDED268762B50030DD67 /* NoteListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */; };
 		32CDEE1E268779560030DD67 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEE1D268779560030DD67 /* Note.swift */; };
@@ -69,6 +72,9 @@
 		322D36AA2685375F003CBC68 /* KoinzTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoinzTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		322D36AE2685375F003CBC68 /* KoinzTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoinzTaskUITests.swift; sourceTree = "<group>"; };
 		322D36B02685375F003CBC68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		324C7CC42688D837001F0AEB /* NoteDetailsView + ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailsView + ImagePicker.swift"; sourceTree = "<group>"; };
+		324C7CC92688D880001F0AEB /* NoteDetailsView + LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailsView + LocationManager.swift"; sourceTree = "<group>"; };
+		324C7CCE2688D9F4001F0AEB /* NoteDetailsView + UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailsView + UITextViewDelegate.swift"; sourceTree = "<group>"; };
 		32828B572687DC5800BEF042 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		32CDEDEC268762B50030DD67 /* NoteListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCellViewModel.swift; sourceTree = "<group>"; };
 		32CDEE1D268779560030DD67 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
@@ -219,6 +225,16 @@
 			path = KoinzTaskUITests;
 			sourceTree = "<group>";
 		};
+		324C7CC32688D802001F0AEB /* Extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				324C7CC42688D837001F0AEB /* NoteDetailsView + ImagePicker.swift */,
+				324C7CC92688D880001F0AEB /* NoteDetailsView + LocationManager.swift */,
+				324C7CCE2688D9F4001F0AEB /* NoteDetailsView + UITextViewDelegate.swift */,
+			);
+			path = Extenstions;
+			sourceTree = "<group>";
+		};
 		32CDEDE02687565C0030DD67 /* Presentaion */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +273,7 @@
 		32CDEE2926877D8E0030DD67 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				324C7CC32688D802001F0AEB /* Extenstions */,
 				32CDEE2A26877DA70030DD67 /* NoteDetailsView.storyboard */,
 				32CDEE32268786230030DD67 /* NoteDetailsTableViewController.swift */,
 			);
@@ -529,6 +546,8 @@
 				32CDEE33268786230030DD67 /* NoteDetailsTableViewController.swift in Sources */,
 				322D36912685375E003CBC68 /* ViewController.swift in Sources */,
 				32003DDC2686898F003FDC5C /* NotesViewController.swift in Sources */,
+				324C7CCA2688D880001F0AEB /* NoteDetailsView + LocationManager.swift in Sources */,
+				324C7CC52688D837001F0AEB /* NoteDetailsView + ImagePicker.swift in Sources */,
 				32CDEE242687797C0030DD67 /* DatabseManager.swift in Sources */,
 				32003DE226868B8E003FDC5C /* NoteListViewModel.swift in Sources */,
 				32CDEDED268762B50030DD67 /* NoteListCellViewModel.swift in Sources */,
@@ -536,6 +555,7 @@
 				322D368D2685375E003CBC68 /* AppDelegate.swift in Sources */,
 				32CDEE3926878DDB0030DD67 /* NoteDetailsViewModel.swift in Sources */,
 				322D368F2685375E003CBC68 /* SceneDelegate.swift in Sources */,
+				324C7CCF2688D9F4001F0AEB /* NoteDetailsView + UITextViewDelegate.swift in Sources */,
 				320EC3E6268651DD00AB9F7B /* NoteTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
