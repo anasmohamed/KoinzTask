@@ -26,14 +26,17 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         notesTableView.dataSource = self
         setupTableView()
         initView()
-        locationManager.delegate = self
+        bindData()
         
+        locationManager.delegate = self
+        getLocationPermission()
+        
+        //        locationManager.startUpdatingLocation()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bindData()
         
     }
     func initView() {
@@ -47,13 +50,13 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     }
     func getLocationPermission()  {
         locationManager.requestAlwaysAuthorization()
-
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
     }
     func bindData()  {
         viewModel.getNotesSuccess.bind{_ in
             self.notesTableView.isHidden = false
             self.addFirstNoteStackView.isHidden = true
-            self.getLocationPermission()
             self.notesTableView.reloadData()
         }
         viewModel.emptyNotes.bind{ status in
@@ -77,7 +80,7 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             }
         }
         
-        let openSettingsAlertController = AlertService.showAlert(alertTitle:"Open Settings", meassage: "you need to go to app settings to give location permission",isCancel:false,actionHandler: openSettingsActionHandler)
+        let openSettingsAlertController = AlertService.showAlert(alertTitle:"Open Settings", okBtnTitle: "Open", meassage: "you need to go to app settings to give location permission",isCancel:false,actionHandler: openSettingsActionHandler)
         
         
         
@@ -117,24 +120,27 @@ extension NotesViewController : CLLocationManagerDelegate {
         longitude = locValue.longitude
         latitude = locValue.latitude
         viewModel.updateLocation(latitude: latitude, longitude: longitude)
+        locationManager.delegate = nil
         viewModel.fetchNotes()
-        
     }
+    
+    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-                if CLLocationManager.locationServicesEnabled() {
-                    switch locationManager.authorizationStatus {
-                    case .notDetermined, .restricted, .denied:
-                        print("No access")
-                        presentGoToSettingsAlert()
-                    case .authorizedAlways, .authorizedWhenInUse:
-                        print("Access")
-                        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-                        locationManager.startUpdatingLocation()
-                    @unknown default:
-                        break
-                    }
-                } else {
-                    print("Location services are not enabled")
-                }
+        if CLLocationManager.locationServicesEnabled() {
+            switch locationManager.authorizationStatus {
+            case .notDetermined, .restricted, .denied:
+                print("No access")
+                presentGoToSettingsAlert()
+            case .authorizedAlways, .authorizedWhenInUse:
+                print("Access")
+                locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                locationManager.startUpdatingLocation()
+                
+            @unknown default:
+                break
+            }
+        } else {
+            print("Location services are not enabled")
+        }
     }
 }

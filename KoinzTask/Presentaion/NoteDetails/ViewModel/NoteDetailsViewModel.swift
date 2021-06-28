@@ -49,12 +49,12 @@ class NoteDetailsViewModel {
     }
     func credentialsInput() -> CredentialsInputStatus {
         if note.title.isEmpty {
-            errorMessage.value = "Password should be 6 digits or more"
+            errorMessage.value = "you should add notes title"
             return .Incorrect
             
         }
         if note.details.isEmpty {
-            errorMessage.value = "email field is empty."
+            errorMessage.value = "you should add note body"
             return .Incorrect
         }
         return .Correct

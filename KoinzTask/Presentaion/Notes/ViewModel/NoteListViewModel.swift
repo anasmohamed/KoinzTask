@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 class NoteListViewModel {
     private var notes: [Note] = [Note]()
-    
+    private var finalNotes = [Note]()
     private var cellViewModels : [NoteListCellViewModel] = [NoteListCellViewModel](){
         didSet{
             getNotesSuccess.value = notes
@@ -31,19 +31,21 @@ class NoteListViewModel {
         self.latitude = latitude
         self.longitude = longitude
     }
+    func getDistanceBetweenUserLocationAndNoteLocation() {
+        for note in notes {
+            let coordinate₀ = CLLocation(latitude: latitude, longitude: longitude)
+            let coordinate₁ = CLLocation(latitude: note.latitude, longitude: longitude)
+            let distance = coordinate₀.distance(from: coordinate₁)
+            distancesInMeter[distance] = note.id
+        }
+    }
     func fetchNotes() {
         notes = DatabaseManager.shared.fetchNotes()
+        print(notes.count)
         if notes.count == 0 {
             emptyNotes.value = true
         }else{
             self.processFetchedNotes(notes: notes)
-            
-            for note in notes {
-                let coordinate₀ = CLLocation(latitude: latitude, longitude: longitude)
-                let coordinate₁ = CLLocation(latitude: note.latitude, longitude: longitude)
-                let distance = coordinate₀.distance(from: coordinate₁)
-                distancesInMeter[distance] = note.id
-            }
         }
         
     }
@@ -75,19 +77,23 @@ class NoteListViewModel {
     private func processFetchedNotes( notes: [Note] ) {
         self.notes = notes // Cache
         var vms = [NoteListCellViewModel]()
+        getDistanceBetweenUserLocationAndNoteLocation()
         let sortedNotes = notes.sorted { $0.creationDate < $1.creationDate }
         for note in sortedNotes {
             if note.id == distancesInMeter[distancesInMeter.keys.min() ?? 0]{
                 vms.insert(createCellViewModel(note:note), at: 0)
+                self.finalNotes.insert(note, at: 0)
             }else{
-                
+                self.finalNotes.append(note)
                 vms.append( createCellViewModel(note:note) )}
         }
         
         self.cellViewModels = vms
     }
     func getData(index: Int) -> Note {
-        return notes[index]
+        print(notes.count)
+
+        return finalNotes[index]
     }
     func getCellViewModel( at indexPath: IndexPath ) -> NoteListCellViewModel {
         return cellViewModels[indexPath.row]

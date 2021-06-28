@@ -31,17 +31,20 @@ class NoteDetailsTableViewController: UITableViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
+        let openImagePickerTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
         addPhotoLbl.isUserInteractionEnabled = true
-        addPhotoLbl.addGestureRecognizer(tap)
+        addPhotoLbl.addGestureRecognizer(openImagePickerTap)
         
         
         let addLocationTap = UITapGestureRecognizer(target: self, action: #selector(addLoctionBtnDidTapped))
         locationLbl.isUserInteractionEnabled = true
         locationLbl.addGestureRecognizer(addLocationTap)
         
+        imagePicker.delegate = self
+
         setupButtons()
         setupUI()
+        bindData()
     }
     
     
@@ -59,22 +62,31 @@ class NoteDetailsTableViewController: UITableViewController  {
         }
         noteTitleTextField.isEnabled = false
         noteBodyTextView.isEditable = false
-        print("nass\(note.id)")
         noteTitleTextField.text = note.title
         noteBodyTextView.text = note.details
         locationLbl.textColor = UIColor.black
         locationLbl.text = note.location
         noteImageView.isHidden = false
         AddNoteBtn.isHidden = true
-        guard let image = loadImageFromDocumentDirectory(fileName: "anas.jpg") else {
+        guard let image = loadImageFromDocumentDirectory(fileName: note.imagePath) else {
             addPhotoLbl.isHidden = false
             return
         }
         addPhotoLbl.isHidden = true
         noteImageView.image = image
-        imagePicker.delegate = self
-
         
+    }
+    func bindData() {
+        viewModel.errorMessage.bind{ message in
+            guard let message = message else{
+                return
+            }
+            let deleteActionHandler: (UIAlertAction) -> Void = { _ in
+               
+            }
+            let deleteAlertController = AlertService.showAlert(alertTitle:"Error", okBtnTitle: "OK", meassage: message , isCancel: false,actionHandler: deleteActionHandler)
+            self.present(deleteAlertController, animated: true)
+        }
     }
     func setupButtons()  {
         setupButtonBorder(button: AddNoteBtn)
@@ -126,13 +138,12 @@ class NoteDetailsTableViewController: UITableViewController  {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
     }
-    @objc func tapFunction(sender:UITapGestureRecognizer) {
-        checkPermission()
-//        let vc = UIImagePickerController()
+    @objc func openImagePicker(sender:UITapGestureRecognizer) {
         imagePicker.sourceType  = .photoLibrary
         imagePicker.allowsEditing = true
-        
+        present(imagePicker, animated: true, completion: nil)
     }
     func navigateToNoteView() {
         let notesViewStoryboard = UIStoryboard(name: "NotesView", bundle: nil)
@@ -144,6 +155,8 @@ class NoteDetailsTableViewController: UITableViewController  {
             noteBodyTextView.isEditable = true
             noteTitleTextField.isEnabled = true
             noteTitleTextField.becomeFirstResponder()
+            locationLbl.text = "Add Location"
+            locationLbl.textColor = UIColor.lightGray
             noteImageView.isHidden = true
             addPhotoLbl.isHidden = false
             editNoteBtn.setTitle("Save", for: .normal)
@@ -187,7 +200,7 @@ class NoteDetailsTableViewController: UITableViewController  {
             self.viewModel.delete(note: self.note!)
             self.navigateToNoteView()
         }
-        let deleteAlertController = AlertService.showAlert(alertTitle:"Delete Note", meassage: "Sure You Want To Delete This Note", isCancel: true,actionHandler: deleteActionHandler)
+        let deleteAlertController = AlertService.showAlert(alertTitle:"Delete Note", okBtnTitle: "Delete", meassage: "Sure You Want To Delete This Note", isCancel: true,actionHandler: deleteActionHandler)
         present(deleteAlertController, animated: true)
         }
 }

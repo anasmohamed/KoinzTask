@@ -16,7 +16,7 @@ extension NoteDetailsTableViewController : UIImagePickerControllerDelegate,UINav
             noteImageView.isHidden = false
             addPhotoLbl.isHidden = true
             noteImageView.image = image
-            saveImage(image,imageName: "anas.jpg")
+            saveImage(image,imageName: "\(Int.random(in: 1..<100)).jpg")
         }
         picker.dismiss(animated: true, completion: nil)
         
@@ -24,33 +24,8 @@ extension NoteDetailsTableViewController : UIImagePickerControllerDelegate,UINav
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    func openPhotoLibrary() {
-       
-    }
-    
-    func checkPermission() {
-        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
-        switch photoAuthorizationStatus {
-        case .authorized:
-            print("Access is granted by user")
-            present(imagePicker, animated: true, completion: nil)
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization({
-                (newStatus) in
-                print("status is \(newStatus)")
-                if newStatus ==  PHAuthorizationStatus.authorized {
-                    self.present(self.imagePicker, animated: true, completion: nil)
-                    print("success")
-                }
-            })
-            presentGoToSettingsAlert()
-        case .denied,.restricted,.limited:
-            presentGoToSettingsAlert()
-      
-        @unknown default:
-            break
-        }
-    }
+  
+
     private func presentGoToSettingsAlert() {
         let openSettingsActionHandler: (UIAlertAction) -> Void = { _ in
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
@@ -64,7 +39,7 @@ extension NoteDetailsTableViewController : UIImagePickerControllerDelegate,UINav
             }
         }
         
-        let openSettingsAlertController = AlertService.showAlert(alertTitle:"Open Settings", meassage: "you need to go to app settings to give location permission",isCancel:false,actionHandler: openSettingsActionHandler)
+        let openSettingsAlertController = AlertService.showAlert(alertTitle:"Open Settings", okBtnTitle: "Open", meassage: "you need to go to app settings to give location permission",isCancel:false,actionHandler: openSettingsActionHandler)
         
         
         

@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 extension NoteDetailsTableViewController : CLLocationManagerDelegate {
     
     func fetchCityAndCountry(from location: CLLocation, completion: @escaping (_ city: String?, _ country:  String?, _ error: Error?) -> ()) {
@@ -23,6 +24,7 @@ extension NoteDetailsTableViewController : CLLocationManagerDelegate {
         fetchCityAndCountry(from: location) { city, country, error in
             guard let city = city, let country = country, error == nil else { return }
             self.locationLbl.text = city + ", " + country
+            self.locationLbl.textColor = UIColor.black
             print(city + ", " + country)
         }
     }
