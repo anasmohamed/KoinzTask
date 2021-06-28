@@ -31,6 +31,7 @@
 		32CDEE2B26877DA70030DD67 /* NoteDetailsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CDEE2A26877DA70030DD67 /* NoteDetailsView.storyboard */; };
 		32CDEE33268786230030DD67 /* NoteDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEE32268786230030DD67 /* NoteDetailsTableViewController.swift */; };
 		32CDEE3926878DDB0030DD67 /* NoteDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CDEE3826878DDB0030DD67 /* NoteDetailsViewModel.swift */; };
+		32FDEB55268971400062BD58 /* ImageSaveing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FDEB54268971400062BD58 /* ImageSaveing.swift */; };
 		447B409B61369B6A1603856F /* Pods_KoinzTask_KoinzTaskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E407FD29B26463EF11A3C6 /* Pods_KoinzTask_KoinzTaskUITests.framework */; };
 		6761ECBEC0FA9F4701DA79CD /* Pods_KoinzTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B1A8C90D38C7A700759E0FA /* Pods_KoinzTask.framework */; };
 		68ED5602502F504C230D825D /* Pods_KoinzTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23E9BBF3A74523949679525 /* Pods_KoinzTaskTests.framework */; };
@@ -84,6 +85,7 @@
 		32CDEE2A26877DA70030DD67 /* NoteDetailsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteDetailsView.storyboard; sourceTree = "<group>"; };
 		32CDEE32268786230030DD67 /* NoteDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsTableViewController.swift; sourceTree = "<group>"; };
 		32CDEE3826878DDB0030DD67 /* NoteDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsViewModel.swift; sourceTree = "<group>"; };
+		32FDEB54268971400062BD58 /* ImageSaveing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaveing.swift; sourceTree = "<group>"; };
 		3DB4D5E31206ECE9A19B529B /* Pods-KoinzTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoinzTask.debug.xcconfig"; path = "Target Support Files/Pods-KoinzTask/Pods-KoinzTask.debug.xcconfig"; sourceTree = "<group>"; };
 		3E8F81AEEDC967A07E9B2163 /* Pods-KoinzTaskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoinzTaskTests.release.xcconfig"; path = "Target Support Files/Pods-KoinzTaskTests/Pods-KoinzTaskTests.release.xcconfig"; sourceTree = "<group>"; };
 		3FA1E187AB6A25D1596E32D2 /* Pods-KoinzTaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoinzTaskTests.debug.xcconfig"; path = "Target Support Files/Pods-KoinzTaskTests/Pods-KoinzTaskTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				32CDEE232687797C0030DD67 /* DatabseManager.swift */,
 				32828B572687DC5800BEF042 /* Observable.swift */,
 				324C7CD32688E25C001F0AEB /* AlertService.swift */,
+				32FDEB54268971400062BD58 /* ImageSaveing.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 			files = (
 				32828B582687DC5800BEF042 /* Observable.swift in Sources */,
 				32CDEE33268786230030DD67 /* NoteDetailsTableViewController.swift in Sources */,
+				32FDEB55268971400062BD58 /* ImageSaveing.swift in Sources */,
 				322D36912685375E003CBC68 /* ViewController.swift in Sources */,
 				32003DDC2686898F003FDC5C /* NotesViewController.swift in Sources */,
 				324C7CCA2688D880001F0AEB /* NoteDetailsView + LocationManager.swift in Sources */,

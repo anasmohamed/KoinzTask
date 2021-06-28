@@ -23,7 +23,7 @@ class NoteDetailsTableViewController: UITableViewController  {
 
     let locationManager = CLLocationManager()
     var viewModel: NoteDetailsViewModel = NoteDetailsViewModel()
-    var imagePath : String = ""
+    var imagePath : String = "\(Int.random(in: 1..<100)).jpg"
     var latitude : Double = 0.0
     var longitude : Double = 0.0
     
@@ -64,11 +64,17 @@ class NoteDetailsTableViewController: UITableViewController  {
         noteBodyTextView.isEditable = false
         noteTitleTextField.text = note.title
         noteBodyTextView.text = note.details
-        locationLbl.textColor = UIColor.black
+        if note.latitude == 0.0 && note.longitude == 0.0 {
+            locationLbl.textColor = UIColor.lightGray
+
+        }else{
+            locationLbl.textColor = UIColor.black
+
+        }
         locationLbl.text = note.location
         noteImageView.isHidden = false
         AddNoteBtn.isHidden = true
-        guard let image = loadImageFromDocumentDirectory(fileName: note.imagePath) else {
+        guard let image = ImageSaveing.loadImageFromDocumentDirectory(fileName: note.imagePath) else {
             addPhotoLbl.isHidden = false
             return
         }
@@ -98,34 +104,12 @@ class NoteDetailsTableViewController: UITableViewController  {
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
     }
-    func documentDirectoryPath() -> URL? {
-        let path = FileManager.default.urls(for: .documentDirectory,
-                                            in: .userDomainMask)
-        return path.first
-    }
-    // MARK: - Table view data source
-    func saveImage(_ image: UIImage,imageName:String) {
-        if let jpgData = image.jpegData(compressionQuality: 0.5),
-           let path = documentDirectoryPath()?.appendingPathComponent(imageName) {
-            imagePath = imageName
-            try? jpgData.write(to: path)
-        }
-    }
+   
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    public func loadImageFromDocumentDirectory(fileName: String) -> UIImage? {
-        
-        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!;
-        let fileURL = documentsUrl.appendingPathComponent(fileName)
-        print(fileURL)
-        do {
-            let imageData = try Data(contentsOf: fileURL)
-            return UIImage(data: imageData)
-        } catch {}
-        return nil
-    }
+   
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows

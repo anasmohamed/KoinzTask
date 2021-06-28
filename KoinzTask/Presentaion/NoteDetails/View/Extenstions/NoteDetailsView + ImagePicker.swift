@@ -16,7 +16,7 @@ extension NoteDetailsTableViewController : UIImagePickerControllerDelegate,UINav
             noteImageView.isHidden = false
             addPhotoLbl.isHidden = true
             noteImageView.image = image
-            saveImage(image,imageName: "\(Int.random(in: 1..<100)).jpg")
+            ImageSaveing.saveImage(image,imageName: imagePath)
         }
         picker.dismiss(animated: true, completion: nil)
         

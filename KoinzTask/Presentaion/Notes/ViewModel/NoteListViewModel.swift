@@ -60,7 +60,7 @@ class NoteListViewModel {
         if note.id == distancesInMeter[distancesInMeter.keys.min() ?? 0]{
             nearest = "Nearest"
         }
-        if note.location.isEmpty {
+        if note.latitude == 0.0 && note.longitude == 0.0 {
             hasGPS = false
         }else{
             hasGPS = true
