@@ -19,7 +19,8 @@ class NoteDetailsTableViewController: UITableViewController  {
     @IBOutlet weak var deleteNoteBtn: UIButton!
     @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var noteTitleTextField: UITextField!
-    
+    let imagePicker = UIImagePickerController()
+
     let locationManager = CLLocationManager()
     var viewModel: NoteDetailsViewModel = NoteDetailsViewModel()
     var imagePath : String = ""
@@ -42,6 +43,7 @@ class NoteDetailsTableViewController: UITableViewController  {
         setupButtons()
         setupUI()
     }
+    
     
     func setupUI(){
         guard let note = note else {
@@ -70,7 +72,8 @@ class NoteDetailsTableViewController: UITableViewController  {
         }
         addPhotoLbl.isHidden = true
         noteImageView.image = image
-        
+        imagePicker.delegate = self
+
         
     }
     func setupButtons()  {
@@ -125,11 +128,16 @@ class NoteDetailsTableViewController: UITableViewController  {
         }
     }
     @objc func tapFunction(sender:UITapGestureRecognizer) {
-        let vc = UIImagePickerController()
-        vc.sourceType  = .photoLibrary
-        vc.allowsEditing = true
-        vc.delegate = self
-        present(vc, animated: true)
+        checkPermission()
+//        let vc = UIImagePickerController()
+        imagePicker.sourceType  = .photoLibrary
+        imagePicker.allowsEditing = true
+        
+    }
+    func navigateToNoteView() {
+        let notesViewStoryboard = UIStoryboard(name: "NotesView", bundle: nil)
+        let notesViewController = notesViewStoryboard.instantiateViewController(identifier: "NotesViewController") as! NotesViewController
+        self.navigationController?.pushViewController(notesViewController, animated: true)
     }
     @IBAction func editNoteBtnDidTapped(_ sender: Any) {
         if editNoteBtn.titleLabel?.text == "Edit"{
@@ -160,7 +168,7 @@ class NoteDetailsTableViewController: UITableViewController  {
         switch viewModel.credentialsInput() {
         
         case .Correct:
-            viewModel.addNote()
+            addNote()
         case .Incorrect:
             return
         }
@@ -169,17 +177,18 @@ class NoteDetailsTableViewController: UITableViewController  {
         presentDeleteAlert()
         
     }
+    func addNote()  {
+        viewModel.addNote()
+        navigateToNoteView()
+    }
+   
     private func presentDeleteAlert() {
         let deleteActionHandler: (UIAlertAction) -> Void = { _ in
             self.viewModel.delete(note: self.note!)
-            
-            self.navigationController?.popViewController(animated: true)
+            self.navigateToNoteView()
         }
-        
-        let deleteAlerController = AlertService.deleteAlert(
-            deleteActionHandler: deleteActionHandler)
-        
-        present(deleteAlerController, animated: true)
-    }
+        let deleteAlertController = AlertService.showAlert(alertTitle:"Delete Note", meassage: "Sure You Want To Delete This Note", isCancel: true,actionHandler: deleteActionHandler)
+        present(deleteAlertController, animated: true)
+        }
 }
 

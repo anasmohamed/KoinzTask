@@ -10,6 +10,8 @@ import CoreLocation
 
 class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    @IBOutlet weak var addFirstNoteBtn: UIButton!
+    @IBOutlet weak var addFirstNoteStackView: UIStackView!
     let locationManager = CLLocationManager()
     var latitude : Double = 0.0
     var longitude : Double = 0.0
@@ -24,28 +26,62 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         notesTableView.dataSource = self
         setupTableView()
         initView()
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
+        locationManager.delegate = self
+        
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bindData()
-
+        
     }
     func initView() {
         self.navigationItem.title = "Notes"
-        
+        addFirstNoteBtn.layer.borderWidth = 1
+        addFirstNoteBtn.layer.cornerRadius = 8
+        addFirstNoteBtn.layer.borderColor = UIColor.black.cgColor
         notesTableView.rowHeight = UITableView.automaticDimension
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
+    }
+    func getLocationPermission()  {
+        locationManager.requestAlwaysAuthorization()
+
     }
     func bindData()  {
         viewModel.getNotesSuccess.bind{_ in
+            self.notesTableView.isHidden = false
+            self.addFirstNoteStackView.isHidden = true
+            self.getLocationPermission()
             self.notesTableView.reloadData()
         }
+        viewModel.emptyNotes.bind{ status in
+            if status {
+                self.notesTableView.isHidden = true
+                self.addFirstNoteStackView.isHidden = false
+            }
+        }
+    }
+    
+    private func presentGoToSettingsAlert() {
+        let openSettingsActionHandler: (UIAlertAction) -> Void = { _ in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        
+        let openSettingsAlertController = AlertService.showAlert(alertTitle:"Open Settings", meassage: "you need to go to app settings to give location permission",isCancel:false,actionHandler: openSettingsActionHandler)
+        
+        
+        
+        present(openSettingsAlertController, animated: true)
     }
     func setupTableView() {
         notesTableView.register(UINib(nibName: "NoteTableViewCell", bundle: nil), forCellReuseIdentifier: "NoteTableViewCell")
@@ -71,7 +107,7 @@ class NotesViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         self.navigationController?.pushViewController(noteDetailsViewController, animated: true)
     }
     
-   
+    
 }
 extension NotesViewController : CLLocationManagerDelegate {
     
@@ -83,5 +119,22 @@ extension NotesViewController : CLLocationManagerDelegate {
         viewModel.updateLocation(latitude: latitude, longitude: longitude)
         viewModel.fetchNotes()
         
+    }
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+                if CLLocationManager.locationServicesEnabled() {
+                    switch locationManager.authorizationStatus {
+                    case .notDetermined, .restricted, .denied:
+                        print("No access")
+                        presentGoToSettingsAlert()
+                    case .authorizedAlways, .authorizedWhenInUse:
+                        print("Access")
+                        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                        locationManager.startUpdatingLocation()
+                    @unknown default:
+                        break
+                    }
+                } else {
+                    print("Location services are not enabled")
+                }
     }
 }

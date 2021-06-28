@@ -57,8 +57,6 @@ class NoteDetailsViewModel {
             errorMessage.value = "email field is empty."
             return .Incorrect
         }
-        
-        
         return .Correct
     }
 }

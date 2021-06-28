@@ -34,7 +34,7 @@ class NoteListViewModel {
     func fetchNotes() {
         notes = DatabaseManager.shared.fetchNotes()
         if notes.count == 0 {
-            emptyNotes.value = false
+            emptyNotes.value = true
         }else{
             self.processFetchedNotes(notes: notes)
             
@@ -75,7 +75,7 @@ class NoteListViewModel {
     private func processFetchedNotes( notes: [Note] ) {
         self.notes = notes // Cache
         var vms = [NoteListCellViewModel]()
-        let sortedNotes = notes.sorted { $0.creationDate > $1.creationDate }
+        let sortedNotes = notes.sorted { $0.creationDate < $1.creationDate }
         for note in sortedNotes {
             if note.id == distancesInMeter[distancesInMeter.keys.min() ?? 0]{
                 vms.insert(createCellViewModel(note:note), at: 0)
